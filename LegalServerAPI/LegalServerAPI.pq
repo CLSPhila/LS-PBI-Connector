@@ -6,7 +6,21 @@ section LegalServerAPI;
 [DataSource.Kind="LegalServerAPI", Publish="LegalServerAPI.Publish"]
 shared LegalServerAPI.Contents = (url as text) =>
     let
-        source = Web.Contents(url),
+        PasswordAPIKey = Text.Split(Extension.CurrentCredential()[Password], "+"),
+        username = Extension.CurrentCredential()[Username],
+        userpass = List.First(PasswordAPIKey),
+        reportkey = List.Last(PasswordAPIKey),
+        basicAuth = Binary.ToText(Text.ToBinary(Text.Combine({username, ":", userpass}))),
+        //basicAuth = Text.Combine({username, ":", userpass}),
+        url = Text.Combine({url, "=", PasswordAPIKey{1}}),
+        // headers = [Authorization = Text.Combine({"Basic: ", Binary.ToText(user})]
+        source = Web.Contents(url,
+            [
+                ManualCredentials = true,
+                Headers = [#"Authorization" = Text.Combine({"Basic ", basicAuth})]
+                //ManualStatusHandling = {403, 404} // Useful for debugging.
+            ]),
+        // metad = Value.Metadata(source), // Useful for debugging 
         report = Xml.Tables(source){0}[Table]
     in
         report;
@@ -16,7 +30,7 @@ LegalServerAPI = [
     Authentication = [
         UsernamePassword = [
             UsernameLabel="API Username",
-            PasswordLabel="API user password",
+            PasswordLabel="API user password, then a '+', then the api key of the report you're downloading.",
             Label="API User Credentials"]
     ],
     Label = Extension.LoadString("DataSourceLabel")

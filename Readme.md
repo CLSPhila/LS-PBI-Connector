@@ -32,7 +32,26 @@ Search for the `LegalServerAPI` connector and select it. Acknowledge that this i
 
 Now PowerBI will ask you for the URL of a report from LegalServer. Let's move on to the next section of this guide.
 
-## How to use
+## How to download a report
 
-After telling PowerBI to get data using this Connector, it will ask you for a report url. 
+After telling PowerBI to get data using this Connector, it will ask you for a report url. You should provide the url to your report **without the api key**. It should look like
+
+```
+https://clsphila.legalserver.org//modules/report/api_export.php?load=630&api_key
+```
+
+Then you'll be prompted for user credentials. Supply the username of a user with api permissions in Legalserver. 
+
+Supply the user's password and the report's api key together in the password field, separated by a `+`, like so:
+
+```
+mysupersecrepassword+1234-7890-1234-09876
+```
+
+PowerBI will then download your report.
+
+You may encounter some columns that load as "table" types, not regular values. This connector provides some utilities to help clean those up.
+
+## Cleaning table-columns
+
 
