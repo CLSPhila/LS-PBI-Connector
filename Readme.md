@@ -54,4 +54,17 @@ You may encounter some columns that load as "table" types, not regular values. T
 
 ## Cleaning table-columns
 
+To clean columns that download from legalserver as Table columns, there are helper functions in this extension to help deal with those columns. 
 
+Currently, the only one is `LegalserverAPI.ValOrNull`. Use it to convert empty tables to `null`, or return the contents of non-empty columns as a single joined string. Use it with `Table.TransformColumns` as follows:
+
+```
+// Use this file to write queries to test your data connector
+let
+    result = LegalServerAPI.Contents("https://myreporturl"),
+    expanded = Table.TransformColumns(result, {
+        {"id", LegalServerAPI.ValOrNull}
+    })
+in
+    expanded
+```

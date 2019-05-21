@@ -50,3 +50,10 @@ LegalServerAPI.Icons = [
     Icon16 = { Extension.Contents("LegalServerAPI16.png"), Extension.Contents("LegalServerAPI20.png"), Extension.Contents("LegalServerAPI24.png"), Extension.Contents("LegalServerAPI32.png") },
     Icon32 = { Extension.Contents("LegalServerAPI32.png"), Extension.Contents("LegalServerAPI40.png"), Extension.Contents("LegalServerAPI48.png"), Extension.Contents("LegalServerAPI64.png") }
 ];
+
+shared LegalServerAPI.ValOrNull = (tbl as table) as any => 
+        let
+            combined = Text.Combine(Table.ToList(tbl, Combiner.CombineTextByDelimiter(",")), ","),
+            stillEmpty = if Text.Trim(combined) = "" then null else combined
+        in
+            stillEmpty;
