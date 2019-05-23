@@ -32,8 +32,8 @@ LegalServerAPI = [
             UsernameLabel="API Username",
             PasswordLabel="API user password, then a '+', then the api key of the report you're downloading.",
             Label="API User Credentials"]
-    ],
-    Label = Extension.LoadString("DataSourceLabel")
+    ]
+    //Label = Extension.LoadString("DataSourceLabel")
 ];
 
 // Data Source UI publishing description
