@@ -6,6 +6,10 @@ Use this custom connector to load reports from the LegalServer API into PowerBI.
 
 **Use of this connector requires saving certain legalserver credentials to a computer's storage. Only do that if you are sure you understand and accept the risks.**
 
+## Setting up Reports API in LegalServer
+
+If you have not already done so, you can see LegalServer's [help pages](http://help.legalserver.org/home/reports/reports-api) for instructions about setting up access to the Reports API.
+
 ## How to Build
 Download [Visual Studio](https://visualstudio.microsoft.com/downloads/). 
 
