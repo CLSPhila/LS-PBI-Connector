@@ -2,7 +2,7 @@
 
 # LegalServer PowerBI Connector
 
-Use this custom connector to load reports from the LegalServer API into PowerBI. This project is experimental, so use at your own risk.
+Use this custom connector to load reports from the LegalServer API into PowerBI. This project is experimental, so use at your own risk. Also note that this project isn't endorsed or supported by LegalServer in any way. 
 
 **Use of this connector requires saving certain legalserver credentials to a computer's storage. Only do that if you are sure you understand and accept the risks.**
 
